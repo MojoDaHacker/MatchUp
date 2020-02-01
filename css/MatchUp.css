@@ -1,0 +1,41 @@
+
+.heroText{
+  color: white;
+}
+.headReg{
+  float: right;
+}
+.container-fluid{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.row{
+  padding: 20px 40px;
+}
+.featuresWrapper, .testimonyWrapper{
+  width: 75%;
+  margin: auto;
+}
+.login, .signin{
+  padding: 0 20px;
+}
+.heroPicWrapper{
+  min-height: 768px;
+  height: auto;
+  position: relative;
+  background-image: radial-gradient(closest-corner at 60% 55%, rgba(255,217,186,1), rgba(255,157, 76,1));
+}
+.heroTextWrapper{
+  font-family: "Actor", "Trebuchet MS", Helvetica, sans-serif;
+}
+.heroText, .heroImg{
+  margin-top: 15%;
+  text-align: center;
+}
+.featuresWrapper{
+  min-height: 728px;
+  height: 726px;
+}
+canvas{
+  border:1px solid #000000;
+}
