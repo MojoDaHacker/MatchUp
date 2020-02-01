@@ -1,4 +1,10 @@
-
+a:link{
+  color: white;
+  background-color: blue;
+}
+a:hover{
+  border-bottom: 3px solid #FF9D4C;
+}
 .heroText{
   color: white;
 }
