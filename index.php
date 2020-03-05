@@ -18,6 +18,12 @@
         <div class="headLogo col">
           <img src="images/DIG3147_LOGO.svg" style="width: 100px;" alt="LOGO">
         </div>
+        <div class="headNav col">
+          <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="contact.php">Contact Us</a></li>
+          </ul>
+        </div>
         <div class="headRegWrapper col">
           <div class="headReg">
             <a class="login" href="#">LOG IN</a>
