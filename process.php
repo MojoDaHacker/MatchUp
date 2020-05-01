@@ -1,46 +1,114 @@
-<?php
-  $name = $pwd = "";
-  $nameErr = $pwdErr = "";
+<?php 
+
+  include 'database.php';
+  session_start();
+  if (!isset($_SERVER['REQUEST_METHOD'])) {
+    echo "Go FUCK off!";
+    $_SESSION['loggedIn'] = false;
+  } else {
+    switch ($_REQUEST['formType']) {
+      case 'Register':
+        if (!cleanInput()) {
+          echo "Error Input Not Clean!";
+        break;
+        }else {
+          accCreate(cleanInput());
+        break;
+        }
+      case 'Login':
+        accLogin(cleanInput(), 'USERLOGIN');
+        break;
+      case 'delete':
+        accDelete();
+        break;
+      default:
+        echo "Error";
+        break;
+    }
+  }
+
+?>
+
+
+<?php //function list
 
   function testInput($data){
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
+
+    return $data;
+    }
+  function accLogin($data, $table){
+    if (testData($data, $table)) {
+      $_SESSION['loggedIn'] = true; 
+      
+?>
+
+      <a href="index.php"> Login Successful! Head Back to Login!</a>
+
+<?php
+    
+  } else {
+       $_SESSION['loggedIn'] = false; 
+       
+?>
+
+      <a href="login.php">Login Unsuccesful! Please try again!</a>
+
+<?php } }?>
+
+<?php
+
+  function accCreate($arr){ 
+    if (insertData('USERLOGIN', 'MatchUp_USERDATA', $arr)) {
+      $_SESSION['loggedIn'] = true;
+    
+?>
+
+    <p>You are logged in!</p>
+    <a href="index.php">Back to HomePage!</a>
+
+<?php 
+  
+    } else {
+      $_SESSION['loggedIn'] = false;
+
+?>
+
+      <a href="register.php">Registration Unsuccessful. Go Back.</a>
+
+<?php
+    
+    }
+  }
+  function cleanInput(){
+    $i = 0;
+    foreach ($_REQUEST as $key => $value) {
+      trim($value);
+      strip_tags($value);
+      stripslashes($value);
+      htmlspecialchars($value);
+
+      $data[$key] = $value;
+      $i++;
+    }
+    //VALIDATE EMAIL
+    if ($_REQUEST['formType'] == 'Register') {
+      if (!filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL)) {
+        return false;
+      }
+    }
     return $data;
   }
+  function accDelete(){
+    $data = cleanInput();
 
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["username"])) {
-      $nameErr = "Name is required";
-    } else {
-      $name = testInput($_POST["username"]);
-    }
-  
-    if (empty($_POST["password"])) {
-      $pwdErr = "Email is required";
-    } else {
-      $pwd = testInput($_POST["password"]);
-    }
-
-
-    #check if login credentials are correct
-    //return 1 for incorrect username
-    //return 2 for inccorect password
-    if ($name == 'dig3134user') {
-      if ($pwd == 'dig3134pass') {
-        $cookie_name = "login";
-        $cookie_value = "DIG_Student";
-        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+    if (testData($data, 'USERLOGIN')) {
+      if(remData($data, 'USERLOGIN')){
+        echo "<a href='index.php'>Account Succesfully Deleted. Back To Homepage</a>";
       }else {
-        $loginErr = 'Password Incorrect';
+        echo "<a href='delete.php'>Account Unsuccesfully Deleted. Back To Homepage</a>";
       }
-    }else {
-      $loginErr = 'Username Incorrect';
+    } else {
+      echo "<a href='delete.php'>Account Credentials Invalid!</a>";
     }
-  
   }
-
-  echo $name, $pwd;
-  echo $_POST["username"], $_POST["password"];
-
 ?>

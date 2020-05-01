@@ -1,36 +1,10 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>MatchUp</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Actor' rel='stylesheet'>
+<?php 
+    include 'header.php';
+?>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/MatchUp.css">
-  </head>
-  <body>
+
     <div class="heroPicWrapper container-fluid">
-      <header class="row">
-        <div class="headLogo col">
-          <img src="images/DIG3147_LOGO.svg" style="width: 100px;" alt="LOGO">
-        </div>
-        <div class="headNav col">
-          <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="contact.php">Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="headRegWrapper col">
-          <div class="headReg">
-            <a class="login" href="#">LOG IN</a>
-            <a class="signin btn btn-outline-primary" href="#">JOIN NOW</a>
-          </div>
-        </div>
-      </header>
+      
       <div class="heroTextWrapper row">
         <div class="heroText col">
           <h5 class="">MATCH WITH THE WORLD</h5>
